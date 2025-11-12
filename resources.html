@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习资源 - 命运石之门博客</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>命运石之门 - 个人博客</h1>
+        <button id="toggleSidebarBtn" class="sidebar-toggle-btn">☰</button>
+    </header>
+
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside id="sidebar" class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于本站</a></li>
+                    <li><a href="project.html">项目展示</a></li>
+                    <li><a href="resources.html" class="active">学习资源</a></li>
+                    <li><a href="blog.html">博客文章</a></li>
+                    <li><a href="anime.html">动漫评鉴</a></li>
+                    <li><a href="past.html">我的过去</a></li>
+                    <li><a href="thoughts.html">杂感记录</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            
+            <h2 style="color: #4dccff; text-align: center;">学习资源</h2>
+            
+            <div style="background: rgba(26, 26, 46, 0.7); padding: 2rem; border-radius: 10px; border: 1px solid rgba(77, 204, 255, 0.3); margin-bottom: 2rem;">
+                <p>在这里整理了一些我在学习过程中收集的优质资源，涵盖前端开发、后端技术、数据科学等多个领域：</p>
+                
+                <div style="margin: 2rem 0;">
+                    <h3 style="color: #ff6666;">前端开发</h3>
+                    <ul>
+                        <li><a href="https://developer.mozilla.org/zh-CN/" style="color: #4dccff;">MDN Web Docs</a> - Web开发权威文档</li>
+                        <li><a href="https://css-tricks.com/" style="color: #4dccff;">CSS-Tricks</a> - CSS技巧和最佳实践</li>
+                        <li><a href="https://reactjs.org/" style="color: #4dccff;">React官方文档</a> - React学习资源</li>
+                        <li><a href="https://webpack.js.org/" style="color: #4dccff;">Webpack文档</a> - 前端构建工具指南</li>
+                    </ul>
+                </div>
+                
+                <div style="margin: 2rem 0;">
+                    <h3 style="color: #ff6666;">后端技术</h3>
+                    <ul>
+                        <li><a href="https://nodejs.org/zh-cn/" style="color: #4dccff;">Node.js官方文档</a> - Node.js学习资源</li>
+                        <li><a href="https://docs.djangoproject.com/zh-hans/3.2/" style="color: #4dccff;">Django文档</a> - Python Web框架</li>
+                        <li><a href="https://spring.io/projects/spring-boot" style="color: #4dccff;">Spring Boot</a> - Java后端开发框架</li>
+                        <li><a href="https://redis.io/documentation" style="color: #4dccff;">Redis文档</a> - 内存数据库学习</li>
+                    </ul>
+                </div>
+                
+                <div style="margin: 2rem 0;">
+                    <h3 style="color: #ff6666;">数据科学</h3>
+                    <ul>
+                        <li><a href="https://pandas.pydata.org/" style="color: #4dccff;">Pandas文档</a> - Python数据分析库</li>
+                        <li><a href="https://scikit-learn.org/" style="color: #4dccff;">Scikit-learn</a> - 机器学习库</li>
+                        <li><a href="https://matplotlib.org/" style="color: #4dccff;">Matplotlib</a> - Python可视化库</li>
+                        <li><a href="https://jupyter.org/" style="color: #4dccff;">Jupyter Notebook</a> - 交互式开发环境</li>
+                    </ul>
+                </div>
+                
+                <div style="margin: 2rem 0;">
+                    <h3 style="color: #ff6666;">科幻与创意</h3>
+                    <ul>
+                        <li><a href="https://zh.wikipedia.org/wiki/%E5%91%BD%E8%BF%90%E7%9F%B3%E4%B9%8B%E9%97%A8" style="color: #4dccff;">命运石之门维基</a> - 作品设定和剧情解析</li>
+                        <li><a href="https://time.com/collection/world-changing-ideas/" style="color: #4dccff;">Time杂志创新理念</a> - 未来科技趋势</li>
+                        <li><a href="https://www.sciencedaily.com/" style="color: #4dccff;">ScienceDaily</a> - 最新科学研究</li>
+                        <li><a href="https://www.ted.com/" style="color: #4dccff;">TED演讲</a> - 创新思维分享</li>
+                    </ul>
+                </div>
+                
+                <p>这些资源会持续更新，如果你有推荐的优质资源，欢迎通过下方联系方式与我分享。</p>
+            </div>
+            <!-- 辉光管时钟 -->
+            <div class="nixie-clock" id="nixieClock" style="display: none;">
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube colon">
+                    <div class="nixie-digit">:</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube colon">
+                    <div class="nixie-digit">:</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>本网站由kw个人开发，联系方式 <a href="mailto:kongw24@mails.tsinghua.edu.cn">kongw24@mails.tsinghua.edu.cn</a></p>
+    </footer>
+</body>
+</html>

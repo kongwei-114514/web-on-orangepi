@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客文章 - 命运石之门博客</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>命运石之门 - 个人博客</h1>
+        <button id="toggleSidebarBtn" class="sidebar-toggle-btn">☰</button>
+    </header>
+
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside id="sidebar" class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于本站</a></li>
+                    <li><a href="project.html">项目展示</a></li>
+                    <li><a href="resources.html">学习资源</a></li>
+                    <li><a href="blog.html" class="active">博客文章</a></li>
+                    <li><a href="anime.html">动漫评鉴</a></li>
+                    <li><a href="past.html">我的过去</a></li>
+                    <li><a href="thoughts.html">杂感记录</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            
+            <h2 style="color: #4dccff; text-align: center;">博客文章</h2>
+            
+            <div style="background: rgba(26, 26, 46, 0.7); padding: 2rem; border-radius: 10px; border: 1px solid rgba(77, 204, 255, 0.3); margin-bottom: 2rem;">
+                <p>以下是我近期撰写的一些技术博客文章：</p>
+                
+                <article style="margin: 2rem 0; padding-bottom: 1rem; border-bottom: 1px solid rgba(77, 204, 255, 0.3);">
+                    <h3 style="color: #ff6666;">好用的笔记软件-notion</h3>
+                    <p style="color: #b0b0ff; font-size: 0.9rem;">发布于 2025年11月5日</p>
+                    <p>一款界面美观、简单易上手、支持多设备同步的电脑笔记软件</p>
+                    <a href="https://www.notion.so/notion-27feea2bb9648042aec0e0e63626fd95?source=copy_link" style="color: #4dccff; text-decoration: none;">在notion里打开</a><br>
+                    <a href="https://mp.weixin.qq.com/s/DZDozl9ueDubDY1fvRsoug" style="color: #4dccff; text-decoration: none;">SAST weekly</a>
+                </article>
+                
+                <!-- <article style="margin: 2rem 0; padding-bottom: 1rem; border-bottom: 1px solid rgba(77, 204, 255, 0.3);">
+                    <h3 style="color: #ff6666;">辉光管时钟的CSS实现：打造复古未来感的网页组件</h3>
+                    <p style="color: #b0b0ff; font-size: 0.9rem;">发布于 2025年10月15日</p>
+                    <p>辉光管时钟是《命运石之门》中极具标志性的元素。本文将详细介绍如何使用纯CSS和JavaScript创建一个具有真实辉光效果的数字时钟组件...</p>
+                    <a href="#" style="color: #4dccff; text-decoration: none;">阅读全文 →</a>
+                </article>
+                
+                <article style="margin: 2rem 0; padding-bottom: 1rem; border-bottom: 1px solid rgba(77, 204, 255, 0.3);">
+                    <h3 style="color: #ff6666;">响应式设计的未来：从《命运石之门》的界面设计中汲取灵感</h3>
+                    <p style="color: #b0b0ff; font-size: 0.9rem;">发布于 2025年10月10日</p>
+                    <p>科幻作品中的界面设计往往具有前瞻性。本文分析《命运石之门》中的UI元素，并探讨如何将这些设计理念应用到现代响应式网页设计中...</p>
+                    <a href="#" style="color: #4dccff; text-decoration: none;">阅读全文 →</a>
+                </article>
+                
+                <article style="margin: 2rem 0; padding-bottom: 1rem; border-bottom: 1px solid rgba(77, 204, 255, 0.3);">
+                    <h3 style="color: #ff6666;">构建个人知识管理系统：一个开发者的学习笔记实践</h3>
+                    <p style="color: #b0b0ff; font-size: 0.9rem;">发布于 2025年10月5日</p>
+                    <p>在信息爆炸的时代，如何有效地管理个人知识成为每个开发者都需要面对的问题。本文分享了我构建个人知识管理系统的过程和经验...</p>
+                    <a href="#" style="color: #4dccff; text-decoration: none;">阅读全文 →</a>
+                </article> -->
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button style="background: linear-gradient(145deg, #1a1a2e, #16213e); border: 1px solid #4dccff; color: #4dccff; padding: 0.8rem 1.5rem; cursor: pointer; font-family: 'Orbitron', sans-serif; border-radius: 5px; box-shadow: 0 0 10px rgba(77, 204, 255, 0.5); transition: all 0.3s ease;">加载更多文章</button>
+                </div>
+            </div>
+            <!-- 辉光管时钟 -->
+            <div class="nixie-clock" id="nixieClock" style="display: none;">
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube colon">
+                    <div class="nixie-digit">:</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube colon">
+                    <div class="nixie-digit">:</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>本网站由kw个人开发，联系方式 <a href="mailto:kongw24@mails.tsinghua.edu.cn">kongw24@mails.tsinghua.edu.cn</a></p>
+    </footer>
+</body>
+</html>

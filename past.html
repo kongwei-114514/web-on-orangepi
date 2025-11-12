@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的过去 - 命运石之门</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>命运石之门 - 个人博客</h1>
+        <button id="toggleSidebarBtn" class="sidebar-toggle-btn">☰</button>
+    </header>
+
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside id="sidebar" class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于本站</a></li>
+                    <li><a href="project.html">项目展示</a></li>
+                    <li><a href="resources.html">学习资源</a></li>
+                    <li><a href="blog.html">博客文章</a></li>
+                    <li><a href="anime.html">动漫评鉴</a></li>
+                    <li><a href="past.html" class="active">我的过去</a></li>
+                    <li><a href="thoughts.html">杂感记录</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            <h1>我的过去</h1>
+            <p>在这里我会分享一些关于我个人成长经历和回忆的故事。</p>
+            
+            <div class="content-section">
+                <h2>成长的足迹</h2>
+                
+                <div class="past-story">
+                    <h3>初识编程</h3>
+                    <p>我还记得第一次接触编程时的情景，那时我还是一个对计算机一无所知的学生。当我第一次成功运行了一个简单的"Hello World"程序时，那种成就感至今难忘。从那时起，我就深深地爱上了编程这门艺术。</p>
+                    <p>随着时间的推移，我逐渐掌握了更多的编程语言和技术，从最初的Python到现在的Web开发，每一次学习都让我感到充实和满足。</p>
+                </div>
+                
+                <div class="past-story">
+                    <h3>与动漫的不解之缘</h3>
+                    <p>作为一个动漫爱好者，我与动漫结下了不解之缘。从《命运石之门》到《Steins;Gate 0》，这些作品不仅给我带来了娱乐，更让我思考了许多关于科学、哲学和人生的问题。</p>
+                    <p>我相信，每一个故事都有其独特的价值和意义，它们在我们的成长过程中扮演着重要的角色。</p>
+                </div>
+                
+                <div class="past-story">
+                    <h3>学习的旅程</h3>
+                    <p>在学习的道路上，我遇到过许多困难和挑战，但正是这些经历让我变得更加坚强和成熟。每一次的失败都是一次宝贵的经验，每一次的成功都是一份前进的动力。</p>
+                    <p>我始终相信，学习是一个永无止境的过程，只有不断地学习和进步，我们才能在这个快速发展的世界中保持竞争力。</p>
+                </div>
+            </div>
+            <div class="nixie-clock" id="nixieClock" style="display: none;">
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube colon">
+                    <div class="nixie-digit">:</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube colon">
+                    <div class="nixie-digit">:</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>本网站由kw个人开发，联系方式 <a href="mailto:kongw24@mails.tsinghua.edu.cn">kongw24@mails.tsinghua.edu.cn</a></p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Live2D 红莉栖 - 增强版</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    #canvas {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+    #status {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 10px;
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      max-width: 300px;
+      transition: opacity 0.3s;
+    }
+    #controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      background: #4CAF50;
+      border: none;
+      color: white;
+      padding: 8px 15px;
+      margin: 0 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+  <div id="status">加载中...</div>
+  <div id="controls" style="display:none;">
+    <button id="playMotion">播放动作</button>
+    <button id="changeExpression">切换表情</button>
+  </div>
+  
+  <script src="/cdn/live2d.js"></script>
+  <script src="/cdn/pixi.min.js"></script>
+  <script src="/cdn/cubism4.js"></script>
+  
+  <script>
+    (async () => {
+      const app = new PIXI.Application({ 
+        view: document.getElementById('canvas'), 
+        transparent: true,
+        resizeTo: window,
+        autoDensity: true
+      });
+      
+      const statusElement = document.getElementById('status');
+      const controlsElement = document.getElementById('controls');
+      
+      // 声明变量，将在模型加载后赋值
+      let model;
+      
+      // 定义 resizeModel 函数
+      function resizeModel() {
+        if (!model || !model.originalWidth) {
+          console.warn('模型未就绪，跳过调整');
+          return;
+        }
+        
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        
+        console.log(`🖥️ 屏幕: ${screenWidth}x${screenHeight}, 模型原始: ${model.originalWidth}x${model.originalHeight}`);
+        
+        // 使用原始尺寸计算
+        const maxWidth = screenWidth * 0.6;
+        const maxHeight = screenHeight * 0.7;
+        
+        const scaleX = maxWidth / model.originalWidth;
+        const scaleY = maxHeight / model.originalHeight;
+        let scale = scaleY*1.2;
+        
+        // 限制缩放范围
+        scale = Math.max(0.15, Math.min(0.4, scale));
+        
+        console.log(`📊 缩放计算: 宽${scaleX.toFixed(3)} 高${scaleY.toFixed(3)} 最终${scale.toFixed(3)}`);
+        
+        model.scale.set(scale);
+        model.x = screenWidth / 2;
+        model.y = screenHeight / 2;
+        
+        if (model.anchor) model.anchor.set(0.5, 0.5);
+        
+        console.log(`✅ 调整完成: 位置(${Math.round(model.x)}, ${Math.round(model.y)}), 缩放${scale.toFixed(3)}`);
+      }
+      
+      // 优化的尺寸监听函数
+      function setupOptimizedResizeHandler() {
+        let lastWidth = window.innerWidth;
+        let lastHeight = window.innerHeight;
+        let resizeTimeout;
+        
+        const checkResize = () => {
+          const currentWidth = window.innerWidth;
+          const currentHeight = window.innerHeight;
+          
+          if (Math.abs(currentWidth - lastWidth) > 5 || Math.abs(currentHeight - lastHeight) > 5) {
+            console.log(`📦 容器变化: ${lastWidth}x${lastHeight} → ${currentWidth}x${currentHeight}`);
+            lastWidth = currentWidth;
+            lastHeight = currentHeight;
+            
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(resizeModel, 150);
+          }
+        };
+        
+        setInterval(checkResize, 250);
+      }
+      
+      // 添加 iframe 容器尺寸监听
+      function setupContainerResizeListener() {
+        // 监听父页面消息（如果是从父页面发送的）
+        window.addEventListener('message', function(event) {
+          if (event.data && event.data.type === 'resize') {
+            console.log('📨 收到父页面调整消息');
+            setTimeout(resizeModel, 100);
+          }
+        });
+        
+        // 使用 ResizeObserver 监听 body 尺寸变化
+        if (window.ResizeObserver) {
+          const observer = new ResizeObserver(entries => {
+            for (let entry of entries) {
+              console.log('🔍 ResizeObserver 检测到容器尺寸变化');
+              setTimeout(resizeModel, 100);
+            }
+          });
+          
+          observer.observe(document.body);
+          console.log('✅ ResizeObserver 监听已启动');
+        }
+      }
+      
+      try {
+        // 加载模型
+        model = await PIXI.live2d.Live2DModel.from('https://static.amadeus-web.top/live2dmodels/steinsGateKurisuNew/红莉栖.model3.json');
+        model.physics = true;
+        
+        // 保存原始尺寸 - 关键修复！
+        model.originalWidth = model.width;
+        model.originalHeight = model.height;
+        console.log(`📐 模型原始尺寸: ${model.originalWidth}x${model.originalHeight}`);
+        
+        app.stage.addChild(model);
+
+        // 立即执行初始布局
+        setTimeout(() => {
+          resizeModel();
+        }, 100); // 稍微延迟确保模型完全初始化
+
+        // 启动尺寸监听
+        setupOptimizedResizeHandler();
+        setupContainerResizeListener();
+        
+        // 动作和表情定义
+        const randomMotions = ['neutral','anger','joy','sadness','shy','shy2','smile1','smile2','surprise','unhappy','random1', 'random3', 'random4', 'random5'];
+        const expressions = ['neutral', 'anger', 'joy', 'sadness', 'shy', 'shy2', 'smile1', 'smile2', 'surprise', 'unhappy'];
+        let currentExpressionIndex = 0;
+        let currentMotionIndex = 0;
+        
+        function setupAutoBlink() {
+          const eyeLOpen = "ParamEyeLOpen";
+          const eyeROpen = "ParamEyeROpen";
+          
+          if (model.internalModel && model.internalModel.coreModel) {
+            const coreModel = model.internalModel.coreModel;
+            const eyeLOpenIndex = coreModel.getParameterIndex(eyeLOpen);
+            const eyeROpenIndex = coreModel.getParameterIndex(eyeROpen);
+            
+            if (eyeLOpenIndex !== -1 && eyeROpenIndex !== -1) {
+              
+              function blink() {
+                let step = 0;
+                const steps = 10;
+                const duration = 300; // 眨眼持续时间(毫秒)
+                
+                const blinkTimer = setInterval(() => {
+                  let value;
+                  if (step < steps / 2) {
+                    value = 1 - (step / (steps / 2)); // 闭眼
+                  } else {
+                    value = (step - steps / 2) / (steps / 2); // 睁眼
+                  }
+                  
+                  coreModel.setParameterValueByIndex(eyeLOpenIndex, value);
+                  coreModel.setParameterValueByIndex(eyeROpenIndex, value);
+                  
+                  step++;
+                  if (step >= steps) {
+                    clearInterval(blinkTimer);
+                    coreModel.setParameterValueByIndex(eyeLOpenIndex, 1);
+                    coreModel.setParameterValueByIndex(eyeROpenIndex, 1);
+                    
+                    // ✅ 眨完一次后，安排下一次眨眼（新随机间隔）
+                    const nextBlinkInterval = 2000 + Math.random() * 6000; // 2~8 秒
+                    setTimeout(blink, nextBlinkInterval);
+                  }
+                }, duration / steps);
+              }
+              
+              // 首次眨眼延迟（也随机）
+              const firstBlink = 2000 + Math.random() * 6000;
+              setTimeout(blink, firstBlink);
+              
+              console.log("✅ 自动眨眼已启用（动态间隔）");
+            } else {
+              console.warn("⚠️ 模型不支持自动眨眼参数");
+            }
+          }
+        }
+        
+        // 头部和眼球跟随鼠标点击（带延时平滑移动）
+        function lookAtMousePosition(event) {
+          const rect = canvas.getBoundingClientRect();
+          const mouseX = event.clientX - rect.left;
+          const mouseY = event.clientY - rect.top;
+          
+          const modelX = model.x;
+          const modelY = model.y;
+          const modelWidth = model.width * model.scale.x;
+          const modelHeight = model.height * model.scale.y;
+          
+          // 计算点击点相对于模型中心的偏移（-1 到 1）
+          // 修复：上下反转
+          const offsetX = (mouseX - modelX) / (modelWidth / 2); // -1 (左) 到 1 (右)
+          const offsetY = -((mouseY - modelY) / (modelHeight / 2)); // -1 (下) 到 1 (上) - 注意负号
+          
+          // 限制偏移范围
+          const clampedOffsetX = Math.max(-1, Math.min(1, offsetX));
+          const clampedOffsetY = Math.max(-1, Math.min(1, offsetY));
+          
+          // 计算目标参数值
+          const targetHeadX = clampedOffsetX * 30;  // 头部X范围 ±30
+          const targetHeadY = clampedOffsetY * 30;  // 头部Y范围 ±30
+          const targetEyeX = clampedOffsetX * 1;    // 眼球X范围 ±1
+          const targetEyeY = clampedOffsetY * 1;    // 眼球Y范围 ±1
+          
+          // 定义参数名
+          const headXParam = "ParamAngleX";
+          const headYParam = "ParamAngleY";
+          const eyeXParam = "ParamEyeBallX";
+          const eyeYParam = "ParamEyeBallY";
+          
+          // 尝试使用内部模型访问参数
+          if (model.internalModel && model.internalModel.coreModel) {
+            const coreModel = model.internalModel.coreModel;
+            
+            const headXIndex = coreModel.getParameterIndex(headXParam);
+            const headYIndex = coreModel.getParameterIndex(headYParam);
+            const eyeXIndex = coreModel.getParameterIndex(eyeXParam);
+            const eyeYIndex = coreModel.getParameterIndex(eyeYParam);
+            
+            // 检查是否有任意参数存在
+            const paramsToSet = [
+              { index: headXIndex, target: targetHeadX, name: headXParam },
+              { index: headYIndex, target: targetHeadY, name: headYParam },
+              { index: eyeXIndex, target: targetEyeX, name: eyeXParam },
+              { index: eyeYIndex, target: targetEyeY, name: eyeYParam }
+            ];
+            
+            if (paramsToSet.some(p => p.index !== -1)) {
+              // 获取当前参数值作为起始点
+              const startValues = paramsToSet.map(p => 
+                p.index !== -1 ? coreModel.getParameterValueByIndex(p.index) : 0
+              );
+              
+              // 动画参数
+              const duration = 500; // 动画持续时间（毫秒）
+              const steps = 30;     // 动画步数
+              let step = 0;
+              
+              const moveInterval = setInterval(() => {
+                step++;
+                const progress = step / steps; // 0 到 1
+                
+                // 使用缓动函数（ease-out）让移动更自然
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                
+                paramsToSet.forEach((p, i) => {
+                  if (p.index !== -1) {
+                    const startVal = startValues[i];
+                    const currentVal = startVal + (p.target - startVal) * easeProgress;
+                    coreModel.setParameterValueByIndex(p.index, currentVal);
+                  }
+                });
+                
+                if (step >= steps) {
+                  clearInterval(moveInterval);
+                  // 确保最终值准确
+                  paramsToSet.forEach(p => {
+                    if (p.index !== -1) {
+                      coreModel.setParameterValueByIndex(p.index, p.target);
+                    }
+                  });
+                  
+                  statusElement.textContent = `看向: (${mouseX}, ${mouseY})`;
+                  statusElement.style.opacity = '1';
+                  setTimeout(() => statusElement.style.opacity = '0.7', 1000);
+                }
+              }, duration / steps);
+              
+            } else {
+              console.warn("未找到头部或眼球参数");
+              statusElement.textContent = "无法看向该位置";
+              statusElement.style.opacity = '1';
+              setTimeout(() => statusElement.style.opacity = '0.7', 2000);
+            }
+          }
+        }
+        
+        // 切换表情
+        function changeExpression() {
+          const expression = expressions[currentExpressionIndex];
+          currentExpressionIndex = (currentExpressionIndex + 1) % expressions.length;
+          if (model.expression(expression)) {
+            statusElement.textContent = `表情: ${expression}`;
+            statusElement.style.opacity = '1';
+            setTimeout(() => statusElement.style.opacity = '0.7', 1500);
+          }
+        }
+
+        function changeMotion() {
+          const motion = randomMotions[currentMotionIndex];
+          currentMotionIndex = (currentMotionIndex + 1) % randomMotions.length;
+          if (model.motion(motion)) {
+            statusElement.textContent = `动作: ${motion}`;
+            statusElement.style.opacity = '1';
+            setTimeout(() => statusElement.style.opacity = '0.7', 500);
+          }
+        }
+        
+        // 启动自动眨眼
+        setupAutoBlink();
+        
+        // 绑定鼠标点击事件到 canvas
+        document.getElementById('canvas').addEventListener('click', lookAtMousePosition);
+        
+        // 控制按钮事件
+        document.getElementById('playMotion').addEventListener('click', changeMotion);
+        document.getElementById('changeExpression').addEventListener('click', changeExpression);
+
+        statusElement.textContent = '加载完成！点击模型或使用下方按钮';
+        controlsElement.style.display = 'block';
+        console.log('✅ 模型加载成功！');
+        console.log('模型内部结构:', model.internalModel);
+        if (model.internalModel && model.internalModel.coreModel) {
+          console.log('核心模型参数数量:', model.internalModel.coreModel.getParameterCount());
+        }
+        
+      } catch (e) {
+        console.error('❌ 模型加载失败:', e);
+        statusElement.textContent = '加载失败: ' + e.message;
+      }
+    })();
+  </script>
+</body>
+</html>

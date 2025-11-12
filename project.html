@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目展示 - 命运石之门博客</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>命运石之门 - 个人博客</h1>
+        <button id="toggleSidebarBtn" class="sidebar-toggle-btn">☰</button>
+    </header>
+
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside id="sidebar" class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html">关于本站</a></li>
+                    <li><a href="project.html" class="active">项目展示</a></li>
+                    <li><a href="resources.html">学习资源</a></li>
+                    <li><a href="blog.html">博客文章</a></li>
+                    <li><a href="anime.html">动漫评鉴</a></li>
+                    <li><a href="past.html">我的过去</a></li>
+                    <li><a href="thoughts.html">杂感记录</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content">
+            
+            <h2 style="color: #4dccff; text-align: center;">项目展示</h2>
+            
+            <div style="background: rgba(26, 26, 46, 0.7); padding: 2rem; border-radius: 10px; border: 1px solid rgba(77, 204, 255, 0.3); margin-bottom: 2rem;">
+                <p>以下是我近期完成的一些项目，涵盖了不同的技术领域：</p>
+                
+                <div style="margin: 2rem 0;">
+                    <h3 style="color: #ff6666;">已经似掉的网络学堂爬虫</h3>
+                    <p>输入账号网络学堂账号密码，可以爬到没有完成的作业进行统计。也可以爬到培养方案完成情况，再根据thu选课社区的评论进行定制化推送</p>
+                    <ul>
+                        <li>技术：python爬虫，多线程加速</li>
+                        <li>特性：已经死了，争取做一个能突破VPN的吧</li>
+                    </ul>
+                </div>
+                
+                <p style="display:none;">更多项目请关注我的GitHub仓库，我会持续更新和完善这些项目。</p>
+            </div>
+            <!-- 辉光管时钟 -->
+            <div class="nixie-clock" id="nixieClock" style="display: none;">
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube colon">
+                    <div class="nixie-digit">:</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube colon">
+                    <div class="nixie-digit">:</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>本网站由kw个人开发，联系方式 <a href="mailto:kongw24@mails.tsinghua.edu.cn">kongw24@mails.tsinghua.edu.cn</a></p>
+    </footer>
+</body>
+</html>

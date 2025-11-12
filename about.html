@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本站 - 命运石之门博客</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>命运石之门 - 个人博客</h1>
+        <button id="toggleSidebarBtn" class="sidebar-toggle-btn">☰</button>
+    </header>
+
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside id="sidebar" class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="about.html" class="active">关于本站</a></li>
+                    <li><a href="project.html">项目展示</a></li>
+                    <li><a href="resources.html">学习资源</a></li>
+                    <li><a href="blog.html">博客文章</a></li>
+                    <li><a href="anime.html">动漫评鉴</a></li>
+                    <li><a href="past.html">我的过去</a></li>
+                    <li><a href="thoughts.html">杂感记录</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主要内容区域 -->
+        <main class="main-content" style="display: flex;justify-content: center; align-items: center; flex-direction: column;">
+            
+            <h1 style="color: #4dccff; text-align: center;">关于本站</h1>
+            
+            <div style="background: rgba(26, 26, 46, 0.7); padding: 2rem; border-radius: 10px; border: 1px solid rgba(77, 204, 255, 0.3); margin-bottom: 2rem;width: 80%;">
+                <h2 style="text-align: center;">世界线的观测者们，你们好，欢迎来到kw的个人网站</h2>
+                <h4 style="text-align: center;">其实kw本人好像有点中二？</h4>
+                <h3 style="color:white">灵感来源</h3>
+                <p>博客的灵感来源于我最喜欢的作品之一——《命运石之门》。神作，伟大无需多言</p>
+                <p>创作的初衷就是想做一个能够展现自我的平台，刚好硬件部有公网IP，而且jwt学长也做过类似的项目</p>
+                <p>最主要的是，还是想在电子系这种无聊的日常中脱离开，做一些不一样的事情</p>
+                <h3 style="color:white">在这里，你可以找到</h3>
+                <ul>
+                    <li>我的追番喜好和点评？或许会有</li>
+                    <li>我的一些思考/想法</li>
+                    <li>学习新东西记的笔记/踩过的坑</li>
+                    <li>我的过去经历（如果你想了解我的话）</li>
+                    <li>以及本站看板娘-Cristina</li>
+                </ul>
+                <h3 style="color:white">其他想说的</h3>
+                <p>这个网站的内容仅代表写下这些东西时，我的价值观体系是什么样的。对同一件事情，不同时间的我对此的看法也不完全一样
+                    <br>不过如果不经历什么重大的事件，我的价值观也不会一下子变化很多</p>
+                <h3 style="color: white;">引用一段话</h3>
+                <blockquote style="border-left: 3px solid #4dccff; padding-left: 1rem; margin: 1.5rem 0; color: #b0b0ff;">
+                    "The universe has a beginning, but no end. — Infinite.<br>
+                    Stars, too, have their own beginnings, but their own power results in their destruction. — Finite.<br>
+                    It is those who possess wisdom who are the greatest fools. History has shown us this.<br>
+                    You could say that this is the final warning from God to those who resist."<br>
+                    <br>
+                    — Steins;Gate 0
+                </blockquote>
+                <p>我希望你能够在这里看到我的另一面，对我能够有更深的了解，这就让我很满足了</p>
+                <br>
+                
+                <p>另外，感谢GitHub作者ai-poet的项目amadeus-system-new，网页上的live2d模型取自项目里的某一部分<br>
+                    仓库原链接https://github.com/ai-poet/amadeus-system-new<br>
+                    欢迎对原项目感兴趣的朋友前往查看
+                </p>
+            </div>
+            <!-- 辉光管时钟 -->
+            <div class="nixie-clock" id="nixieClock" style="display: none;">
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube colon">
+                    <div class="nixie-digit">:</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube colon">
+                    <div class="nixie-digit">:</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+                <div class="nixie-tube">
+                    <div class="nixie-digit active">0</div>
+                    <div class="nixie-digit">1</div>
+                    <div class="nixie-digit">2</div>
+                    <div class="nixie-digit">3</div>
+                    <div class="nixie-digit">4</div>
+                    <div class="nixie-digit">5</div>
+                    <div class="nixie-digit">6</div>
+                    <div class="nixie-digit">7</div>
+                    <div class="nixie-digit">8</div>
+                    <div class="nixie-digit">9</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>本网站由kw个人开发，联系方式 <a href="mailto:kongw24@mails.tsinghua.edu.cn">kongw24@mails.tsinghua.edu.cn</a></p>
+    </footer>
+</body>
+</html>
