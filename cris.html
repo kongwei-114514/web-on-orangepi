@@ -31,28 +31,82 @@
       transition: opacity 0.3s;
     }
     #controls {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0,0,0,0.7);
-      color: white;
-      padding: 10px;
-      border-radius: 10px;
-      font-family: Arial, sans-serif;
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.7);
+        color: white;
+        padding: 10px;
+        border-radius: 10px;
+        font-family: Arial, sans-serif;
+        /* 添加弹性布局以便更好地控制按钮排列 */
+        display: flex;
+        gap: 10px;
+        transition: all 0.3s ease; /* 添加过渡效果 */
     }
+
     button {
-      background: #4CAF50;
-      border: none;
-      color: white;
-      padding: 8px 15px;
-      margin: 0 5px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 20px;
+        background: #4CAF50;
+        border: none;
+        color: white;
+        padding: 8px 15px;
+        margin: 0 5px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 20px;
+        transition: all 0.3s ease; /* 添加过渡效果 */
+        white-space: nowrap; /* 防止文字换行 */
     }
+
     button:hover {
-      background: #45a049;
+        background: #45a049;
+    }
+
+    /* 移动端样式优化 */
+    @media (max-width: 768px) {
+        #status {
+            font-size: 14px;
+            max-width: 200px;
+            padding: 6px 10px;
+        }
+        
+        #controls {
+            bottom: 10px;
+            padding: 8px;
+            gap: 6px; /* 缩小按钮间距 */
+            transform: translateX(-50%) scale(0.9); /* 整体缩放控制区域 */
+        }
+        
+        button {
+            padding: 6px 12px;
+            font-size: 16px; /* 减小字体大小 */
+            margin: 0 2px; /* 减小外边距 */
+            transform: scale(0.9); /* 按钮单独缩放 */
+        }
+    }
+
+    /* 超小屏幕进一步优化 */
+    @media (max-width: 480px) {
+        #controls {
+            bottom: 5px;
+            padding: 6px;
+            gap: 4px;
+            transform: translateX(-50%) scale(0.8); /* 进一步缩小 */
+        }
+        
+        button {
+            padding: 4px 8px;
+            font-size: 14px;
+            margin: 0 1px;
+            transform: scale(0.85); /* 进一步缩小按钮 */
+        }
+        
+        #status {
+            font-size: 12px;
+            max-width: 150px;
+            padding: 4px 8px;
+        }
     }
   </style>
 </head>
